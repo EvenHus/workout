@@ -1,0 +1,17 @@
+<h1 class="heading text-center workout-header">{{title}}</h1>
+<div class="container workout-content">
+  <div *ngFor="let image of imageList; let i = index">
+    <div class="card">
+
+      <div class="card__header">
+        <div class="card__header-text">{{image}}</div>
+      </div>
+
+      <div class="card__block">
+        <div class="card__image-slider">
+          <img [src]="'assets/images/' + image +  '.png'">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

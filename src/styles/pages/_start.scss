@@ -30,3 +30,19 @@
   background-color: $color-brand-info;
   clear: both;
 }
+
+.workout-header {
+  padding: $md;
+  position: fixed;
+  width: 100%;
+  height: 10%;
+  right: 0;
+  top: 0;
+  left: 0;
+  background-color: $color-brand-primary;
+  clear: both;
+}
+
+.workout-content {
+  margin-top: 15%;
+}
