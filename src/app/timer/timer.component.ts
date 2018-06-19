@@ -13,16 +13,23 @@ import {timer} from 'rxjs/observable/timer';
 export class TimerComponent implements OnInit{
   ticks = 0;
 
-  minutesDisplay: number = 1;
+  userInput: any;
+
+  secondsInitValue: number; //Should be value set by user
+
+  minutesDisplay: number = 0;
   hoursDisplay: number = 0;
-  secondsDisplay: number = 30;
+  secondsDisplay: number; //Should be value set by user
 
   view: boolean;
 
   sub: Subscription;
 
   ngOnInit() {
-    //this.startTimer();
+    this.secondsDisplay = this.secondsInitValue;
+    this.userInput = prompt('Set timer in a number format');
+    this.secondsInitValue = this.userInput;
+    this.secondsDisplay = this.userInput;
   }
 
   startTimer() {
@@ -32,20 +39,27 @@ export class TimerComponent implements OnInit{
       t => {
         this.ticks = t;
 
-        this.secondsDisplay = this.getSeconds(this.secondsDisplay) - this.ticks;
-        this.minutesDisplay = this.getMinutes(this.ticks);
-        this.hoursDisplay = this.getHours(this.ticks);
+        this.secondsDisplay = this.getSeconds(this.ticks);
+        //this.minutesDisplay = this.getMinutes(this.ticks);
+        //this.hoursDisplay = this.getHours(this.ticks);
       }
     );
   }
 
   stop(): void {
     this.view = !this.view;
-    this.sub.unsubscribe();
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
   private getSeconds(ticks: number) {
-    return this.pad(ticks % 60);
+    let countDown = this.secondsInitValue - ticks;
+    if (countDown <= 0) {
+      this._reset();
+    }
+    return countDown;
+    //return this.pad(ticks % 60);
   }
 
   private getMinutes(ticks: number) {
@@ -57,7 +71,16 @@ export class TimerComponent implements OnInit{
   }
 
   private pad(digit: any) {
-    console.log(digit);
     return digit <= 9 ? '0' + digit : digit;
+  }
+
+  private _reset(): void {
+    this.stop();
+    //this.userInput = prompt('Set timer in a number format');
+    this.secondsInitValue = 15; //Should be set by users input value
+    this.minutesDisplay = 0;
+    this.hoursDisplay = 0;
+    this.secondsDisplay = 15;
+    this.ticks = 0;
   }
 }
