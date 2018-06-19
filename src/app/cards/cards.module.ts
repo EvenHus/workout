@@ -3,11 +3,13 @@ import {CommonModule} from '@angular/common';
 
 import {CardsComponent} from './cards.component';
 import {RouterModule} from '@angular/router';
+import {TimerModule} from '../timer/timer.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild([{path: ':name', component: CardsComponent}])
+    RouterModule.forChild([{path: ':name', component: CardsComponent}]),
+    TimerModule
   ],
   declarations: [
     CardsComponent
