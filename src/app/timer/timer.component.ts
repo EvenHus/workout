@@ -17,29 +17,31 @@ export class TimerComponent implements OnInit{
   hoursDisplay: number = 0;
   secondsDisplay: number = 30;
 
+  view: boolean;
+
   sub: Subscription;
 
   ngOnInit() {
     //this.startTimer();
   }
 
-  private startTimer() {
-
+  startTimer() {
+    this.view = !this.view;
     const time = timer(1, 1000);
     this.sub = time.subscribe(
       t => {
         this.ticks = t;
 
-        console.log(this.ticks);
-
         this.secondsDisplay = this.getSeconds(this.secondsDisplay) - this.ticks;
-
-
-        console.log(this.secondsDisplay);
         this.minutesDisplay = this.getMinutes(this.ticks);
         this.hoursDisplay = this.getHours(this.ticks);
       }
     );
+  }
+
+  stop(): void {
+    this.view = !this.view;
+    this.sub.unsubscribe();
   }
 
   private getSeconds(ticks: number) {
@@ -55,6 +57,7 @@ export class TimerComponent implements OnInit{
   }
 
   private pad(digit: any) {
+    console.log(digit);
     return digit <= 9 ? '0' + digit : digit;
   }
 }

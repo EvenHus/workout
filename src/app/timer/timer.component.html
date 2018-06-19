@@ -1,3 +1,5 @@
 <h1 class="timer">
   {{hoursDisplay ? hoursDisplay : '00'}} : {{(minutesDisplay) && (minutesDisplay <= 59) ? minutesDisplay : '00'}} : {{(secondsDisplay) && (secondsDisplay <= 59) ? secondsDisplay : '00'}} <br/>
 </h1>
+<button class="button button--block button--secondary" *ngIf="!view" (click)="startTimer()">Start</button>
+<button class="button button--block button--secondary" *ngIf="view" (click)="stop()">Stop</button>
