@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
 import {Observable} from 'rxjs/Observable';
 import {timer} from 'rxjs/observable/timer';
@@ -10,10 +10,11 @@ import {timer} from 'rxjs/observable/timer';
   templateUrl: './timer.component.html'
 })
 
-export class TimerComponent implements OnInit{
+export class TimerComponent implements OnInit, OnDestroy{
   ticks = 0;
 
   userInput: any;
+  copyUserInput: any;
 
   secondsInitValue: number; //Should be value set by user
 
@@ -28,6 +29,7 @@ export class TimerComponent implements OnInit{
   ngOnInit() {
     this.secondsDisplay = this.secondsInitValue;
     this.userInput = prompt('Set timer in a number format');
+    this.copyUserInput = this.userInput;
     this.secondsInitValue = this.userInput;
     this.secondsDisplay = this.userInput;
   }
@@ -48,6 +50,12 @@ export class TimerComponent implements OnInit{
 
   stop(): void {
     this.view = !this.view;
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
+  }
+
+  ngOnDestroy(): void {
     if (this.sub) {
       this.sub.unsubscribe();
     }
@@ -77,10 +85,10 @@ export class TimerComponent implements OnInit{
   private _reset(): void {
     this.stop();
     //this.userInput = prompt('Set timer in a number format');
-    this.secondsInitValue = 15; //Should be set by users input value
+    this.secondsInitValue = this.copyUserInput; //Should be set by users input value
     this.minutesDisplay = 0;
     this.hoursDisplay = 0;
-    this.secondsDisplay = 15;
+    this.secondsDisplay = this.copyUserInput;
     this.ticks = 0;
   }
 }
