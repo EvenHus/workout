@@ -1,0 +1,114 @@
+.tabs {
+  display: flex;
+  margin: $lg 0;
+  padding: 0.2rem;
+  border-radius: $border-radius;
+  background: darken(#FFFFFF, 5%);
+}
+
+.tab {
+  &__item {
+    margin-right: 0.2rem;
+    flex: 1;
+    font-size: $small-font-size;
+    text-align: center;
+
+    &:first-of-type {
+      border-top-left-radius: $border-radius;
+      border-bottom-left-radius: $border-radius;
+      overflow: hidden;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+      border-top-right-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+      overflow: hidden;
+    }
+  }
+
+  &__item-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    background: darken(#FFFFFF, 1%);
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    -ms-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+
+    &:link, &:visited {
+      color: rgba(black, 0.4);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .tab-icon {
+      display: block;
+      font-size: 2rem;
+      margin-top: -0.8rem;
+      margin-bottom: -0.8rem;
+    }
+
+    .tab-title {
+      display: block;
+    }
+
+    &--selected {
+      color: #FFFFFF;
+      font-weight: bold;
+      background-color: $color-brand-primary;
+    }
+  }
+}
+
+.tab-badge {
+  display: inline-block;
+  position: absolute;
+  width: 1.35rem;
+  height: 1.3rem;
+  margin-left: 0.5rem;
+  padding: 0rem 0.5rem;
+  color: #FFFFFF;
+  font-size: 0.7rem;
+  border-radius: 50%;
+  background: rgba($color-brand-primary, 0.7);
+}
+
+.tabs-top {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  background: #4B838E;
+  z-index: 5;
+
+  &__item {
+    flex: 1;
+  }
+
+  &__item-link {
+    padding: 0.2rem 0.5rem;
+    display: block;
+    text-align: center;
+    color: #FFFFFF;
+
+    &:link, &:visited {
+      color: #FFFFFF;
+    }
+  }
+
+  &__item-link--selected {
+    background: darken($color-brand-primary, 2%);
+  }
+
+  &__item-icon {
+    padding: $sm;
+    font-family: "Ionicons";
+    font-size: 1.8rem;
+    color: $color-white;
+    text-align: center;
+  }
+}

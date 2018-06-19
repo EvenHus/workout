@@ -1,0 +1,11 @@
+.support {
+  display: flex;
+
+  &__button {
+    flex: 1;
+  }
+
+  &__mobile {
+    margin: $md;
+  }
+}

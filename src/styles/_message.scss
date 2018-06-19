@@ -1,0 +1,72 @@
+.message {
+  padding: 1.6rem;
+  border-bottom: 1px solid $color-light-gray;
+  background: $color-white;
+
+  &__row {
+    display: flex;
+  }
+
+  &__icons {
+    width: 36px;
+    margin-right: 1rem;
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__heading {
+    display: flex;
+    font-weight: bold;
+    color: $color-brand-primary;
+  }
+
+  &__heading-content-object {
+    flex: 1;
+    font-size: $default-font-size;
+  }
+
+  &__header-options {
+
+  }
+
+  &__created {
+    font-size: $small-font-size;
+  }
+
+  &__body {
+    margin-top: $sm;
+    font-size: $default-font-size;
+  }
+
+  &__icon {
+    margin-right: $sm;
+    font-size: $default-font-size;
+    text-align: center;
+
+    &--important {
+      color: $color-brand-danger;
+    }
+
+    &--unread {
+      color: $color-brand-info;
+    }
+  }
+
+  &__comments {
+    margin-top: $sm;
+    font-size: $default-font-size;
+    color: $color-darker-grey;
+
+    &--enhanced {
+      color: $color-brand-primary;
+    }
+  }
+
+  &__read-by {
+    margin-top: $sm;
+    font-size: $small-font-size;
+    color: $color-darker-grey;
+  }
+}

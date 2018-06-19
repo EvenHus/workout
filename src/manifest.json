@@ -1,0 +1,16 @@
+{
+  "short_name": "Workout",
+  "name": "Workout",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/assets/images/Sports-Dumbbell-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#e8d174",
+  "theme_color": "#e39e54",
+  "display": "standalone",
+  "orientation": "any"
+}

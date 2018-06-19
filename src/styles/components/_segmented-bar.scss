@@ -1,0 +1,26 @@
+.segmented-bar {
+  display: flex;
+  border-radius: $border-radius;
+  border: 1px solid $color-brand-primary;
+
+  .segmented-bar__option {
+    flex: 1;
+    padding: $sm $md;
+    color: $color-brand-primary;
+    font-size: $small-font-size;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.25s ease-out;
+
+    &:not(:last-child) {
+      border-right: 1px solid $color-brand-primary;
+    }
+
+    &:hover, &--selected {
+      cursor: pointer;
+      color: $color-white;
+      background: $color-brand-primary;
+    }
+  }
+
+}

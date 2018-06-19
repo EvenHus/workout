@@ -1,0 +1,24 @@
+.page-header {
+  height: 10rem;
+  background-color: $color-brand-primary;
+
+  @media only screen and (min-width: $md-breakpoint) {
+    height: 15rem;
+  }
+
+  &__heading {
+    font-size: 3.2rem;
+    color: $color-white;
+    text-align: center;
+
+    @media only screen and (min-width: $md-breakpoint) {
+      padding-top: 5rem;
+    }
+  }
+
+  &__sub-heading {
+    font-size: $default-font-size;
+    color: $color-white;
+    text-align: center;
+  }
+}

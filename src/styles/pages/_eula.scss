@@ -1,0 +1,28 @@
+.eula {
+  &__section {
+    h2 {
+      margin: $lg 0 $sm;
+      font-size: 2rem;
+    }
+
+    h4 {
+      font-size: $default-font-size;
+    }
+
+    p {
+      margin-bottom: $md;
+    }
+
+    ul, ol {
+      margin: $md 0;
+      font-size: $default-font-size;
+    }
+  }
+
+  &__emphasized-area {
+    margin-top: $lg;
+    padding: $md;
+    border-radius: $border-radius;
+    background: darken($color-white, 5%);
+  }
+}

@@ -1,0 +1,5 @@
+.skeleton-paragraph {
+  @include skeletonize;
+  margin: 2rem auto 0;
+  height: $default-font-size;
+}
