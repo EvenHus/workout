@@ -1,7 +1,14 @@
-<h1 class="heading text-center workout-header">{{title}}</h1>
+<h1 class="heading text-center workout-header">
+  <div class="flex">
+    <div class="flex-auto" (click)="goBack()"><span>Back</span></div>
+    <div class="flex-1">
+      {{title}}
+    </div>
+  </div>
+</h1>
 <div class="container workout-content">
   <app-timer></app-timer>
-  <div *ngFor="let image of imageList; let i = index">
+  <div *ngFor="let image of imageList | paginate: {itemsPerPage: 1, currentPage: p}; let i = index">
     <div class="card">
 
       <div class="card__header">
@@ -15,4 +22,5 @@
       </div>
     </div>
   </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>

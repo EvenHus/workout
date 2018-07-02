@@ -12,12 +12,11 @@ export class HomeComponent implements OnInit{
   list: Array<string>;
 
   constructor(private _router: Router) {
-    console.log('hello');
   }
 
   ngOnInit(): void {
     this.title = 'Workout';
-    this.list = ['Arms', 'Legs', 'Body', 'Fun'];
+    this.list = ['Pinterest workout'];
   }
 
   changeListName(i: number): void {

@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   moduleId: module.id,
@@ -10,17 +11,22 @@ import {ActivatedRoute} from '@angular/router';
 export class CardsComponent implements OnInit {
   title: string;
   imageList: Array<string>;
+  p: number;
 
-  constructor(private _activatedRoute: ActivatedRoute) {}
+  constructor(private _activatedRoute: ActivatedRoute, private _location: Location) {}
 
   ngOnInit(): void {
 
     const params = this._activatedRoute.snapshot.params;
     this.title = params.name;
+    this.p = 1;
 
-    console.log('cards');
     this.imageList =
-      ['bench', 'biceps', 'chainsaw', 'chainsawlift', 'flyback', 'overheadbelly', 'overheadflat', 'shoulder',
-        'shoulderarm', 'shoulderfly', 'shoulderlift', 'shouldertwist', 'sidebench', 'standbiceps', 'tricepsback', 'uptothesky', 'wings'];
+      ['shoulderlift', 'shoulderfly', 'flyback', 'standbiceps', 'uptothesky', 'tricepsback', 'biceps', 'wings', 'shoulderarm', 'shoulder',
+        'shouldertwist', 'chainsaw', 'chainsawlift', 'bench', 'sidebench', 'overheadbelly', 'overheadflat'];
+  }
+
+  goBack(): void {
+    this._location.back();
   }
 }

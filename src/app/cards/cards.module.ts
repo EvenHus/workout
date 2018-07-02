@@ -1,5 +1,6 @@
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import {CardsComponent} from './cards.component';
 import {RouterModule} from '@angular/router';
@@ -9,7 +10,8 @@ import {TimerModule} from '../timer/timer.module';
   imports: [
     CommonModule,
     RouterModule.forChild([{path: ':name', component: CardsComponent}]),
-    TimerModule
+    TimerModule,
+    NgxPaginationModule
   ],
   declarations: [
     CardsComponent
