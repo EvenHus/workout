@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1 class="heading text-center workout-header">
   <div class="flex">
     <div class="flex-auto" (click)="goBack()"><span>Back</span></div>
@@ -6,6 +7,9 @@
     </div>
   </div>
 </h1>
+=======
+<h1 class="heading workout-header">{{title}}</h1>
+>>>>>>> 8d14ce9fb3afaf9716fbd49fb536b5940b31bd46
 <div class="container workout-content">
   <app-timer></app-timer>
   <div *ngFor="let image of imageList | paginate: {itemsPerPage: 1, currentPage: p}; let i = index">

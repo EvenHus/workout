@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
 import {Observable} from 'rxjs/Observable';
 import {timer} from 'rxjs/observable/timer';
@@ -10,19 +10,28 @@ import {timer} from 'rxjs/observable/timer';
   templateUrl: './timer.component.html'
 })
 
-export class TimerComponent implements OnInit{
+export class TimerComponent implements OnInit, OnDestroy{
   ticks = 0;
 
-  minutesDisplay: number = 1;
+  userInput: any;
+  copyUserInput: any;
+
+  secondsInitValue: number; //Should be value set by user
+
+  minutesDisplay: number = 0;
   hoursDisplay: number = 0;
-  secondsDisplay: number = 30;
+  secondsDisplay: number; //Should be value set by user
 
   view: boolean;
 
   sub: Subscription;
 
   ngOnInit() {
-    //this.startTimer();
+    this.secondsDisplay = this.secondsInitValue;
+    this.userInput = prompt('Set timer in a number format');
+    this.copyUserInput = this.userInput;
+    this.secondsInitValue = this.userInput;
+    this.secondsDisplay = this.userInput;
   }
 
   startTimer() {
@@ -32,20 +41,33 @@ export class TimerComponent implements OnInit{
       t => {
         this.ticks = t;
 
-        this.secondsDisplay = this.getSeconds(this.secondsDisplay) - this.ticks;
-        this.minutesDisplay = this.getMinutes(this.ticks);
-        this.hoursDisplay = this.getHours(this.ticks);
+        this.secondsDisplay = this.getSeconds(this.ticks);
+        //this.minutesDisplay = this.getMinutes(this.ticks);
+        //this.hoursDisplay = this.getHours(this.ticks);
       }
     );
   }
 
   stop(): void {
     this.view = !this.view;
-    this.sub.unsubscribe();
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
   private getSeconds(ticks: number) {
-    return this.pad(ticks % 60);
+    let countDown = this.secondsInitValue - ticks;
+    if (countDown <= 0) {
+      this._reset();
+    }
+    return countDown;
+    //return this.pad(ticks % 60);
   }
 
   private getMinutes(ticks: number) {
@@ -57,7 +79,16 @@ export class TimerComponent implements OnInit{
   }
 
   private pad(digit: any) {
-    console.log(digit);
     return digit <= 9 ? '0' + digit : digit;
+  }
+
+  private _reset(): void {
+    this.stop();
+    //this.userInput = prompt('Set timer in a number format');
+    this.secondsInitValue = this.copyUserInput; //Should be set by users input value
+    this.minutesDisplay = 0;
+    this.hoursDisplay = 0;
+    this.secondsDisplay = this.copyUserInput;
+    this.ticks = 0;
   }
 }
